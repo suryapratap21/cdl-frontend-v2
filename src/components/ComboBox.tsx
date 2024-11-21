@@ -2,10 +2,12 @@
 
 import {
   Combobox,
+  ComboboxButton,
   ComboboxInput,
   ComboboxOption,
   ComboboxOptions,
 } from '@headlessui/react'
+import { ChevronDownIcon } from 'lucide-react'
 import { useState } from 'react'
 
 type Option = {
@@ -42,15 +44,20 @@ export default function ComboBox({
       onChange={handleSelect}
       onClose={() => setQuery('')}
     >
-      <ComboboxInput
-        aria-label="Assignee"
-        displayValue={(option: Option) => option?.label}
-        onChange={(event) => setQuery(event.target.value)}
-        {...inputOptions}
-      />
+      <div className="relative">
+        <ComboboxButton className="group absolute inset-y-0 right-0 px-2.5">
+          <ChevronDownIcon className="size-4 fill-white/60 group-data-[hover]:fill-white" />
+        </ComboboxButton>
+        <ComboboxInput
+          aria-label="Assignee"
+          displayValue={(option: Option) => option?.label}
+          onChange={(event) => setQuery(event.target.value)}
+          {...inputOptions}
+        />
+      </div>
       <ComboboxOptions
         anchor="bottom"
-        className="z-50 mt-2 max-h-40 w-[var(--input-width)] rounded-md border bg-white shadow-lg ring-1 ring-black ring-opacity-5 empty:invisible focus:outline-none"
+        className="z-50 mt-2 !max-h-60 w-[var(--input-width)] rounded-md border bg-white shadow-lg ring-1 ring-black ring-opacity-5 empty:invisible focus:outline-none"
       >
         {filteredPeople.map((option) => (
           <ComboboxOption

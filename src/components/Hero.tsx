@@ -4,20 +4,20 @@ import { MapPin, Search } from 'lucide-react'
 import jobLocations from '@/config/jobLocations.json'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-// import bannerPerson from '@/images/banner/bg.png'
-import bannerPerson from '@/images/banner/bg-person.webp'
+import bannerPerson from '@/images/banner/bg.png'
+// import bannerPerson from '@/images/banner/bg-person.webp'
 import logoLaravel from '@/images/logos/laravel.svg'
 import logoMirage from '@/images/logos/mirage.svg'
 import logoStatamic from '@/images/logos/statamic.svg'
 import logoStaticKit from '@/images/logos/statickit.svg'
 import logoTransistor from '@/images/logos/transistor.svg'
 import logoTuple from '@/images/logos/tuple.svg'
-import ComboBox from './pages/home/TransparentComboBox'
+import ComboBox from './ComboBox'
 
 export function Hero() {
   return (
     <Container className="max-w-8xl pb-16 pt-20 text-center lg:pt-32">
-      <div className="lg:flex lg:justify-between">
+      <div className="grid items-center gap-6 lg:grid-cols-2">
         <div>
           <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
             Your{' '}
@@ -68,11 +68,66 @@ export function Hero() {
             </Button>
           </div>
         </div>
-        <div className="hidden max-w-lg lg:block">
-          <Image src={bannerPerson} alt="Hero section banner" />
+        <div className="hidden lg:block">
+          <div className="relative inline-block">
+            <Image
+              className="relative z-10 mx-auto rounded-md xl:h-[500px] xl:w-auto"
+              src={bannerPerson}
+              alt="Hero section banner"
+            />
+            <div
+              style={{
+                bottom: '-1.8rem',
+                right: '-0.8rem',
+                width: '85%',
+                height: '90%',
+                transform: 'translate3d(0px, 0px, 0px)',
+              }}
+              className="shape absolute z-0 h-full w-full rounded bg-gradient-to-r from-sky-300 to-blue-300 md:block lg:block xl:block"
+            ></div>
+
+            <div className="absolute -start-10 top-10 z-20">
+              <div className="border-primary/20 dark:bg-default-50 inline-block rounded-xl border-4 bg-white p-4 drop-shadow-md">
+                <h2 className="text-default-950 text-2xl font-medium">
+                  $6,726&nbsp;
+                  <span className="text-primary text-base font-medium">
+                    +12.5%
+                  </span>
+                </h2>
+                <p className="mt-1 text-base">Total Revenue</p>
+              </div>
+            </div>
+          </div>
+          {/* <div className="relative inline-block rounded-xl border border-red-400 bg-gradient-to-r from-rose-300 to-red-300 p-6">
+            <Image
+              className="mx-auto rounded-md xl:h-[500px] xl:w-full"
+              src={bannerPerson}
+              alt="Hero section banner"
+            />
+            <div className="hidden xl:block">
+              <div className="absolute -start-12 top-10">
+                <div className="inline-block">
+                  <div className="border-default-200 rounded-full border bg-white/80 shadow backdrop-blur-lg">
+                    <div className="max-w-sm px-4 py-4 text-center">
+                      <p className="text-default-950 text-base">Donec</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute -end-12 bottom-10 top-auto">
+                <div className="inline-block">
+                  <div className="border-default-200 rounded-full border bg-white/80 shadow backdrop-blur-lg">
+                    <div className="max-w-sm px-4 py-4 text-center">
+                      <p className="text-default-950 text-base">Donec</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> */}
         </div>
       </div>
-      <div className="mt-36 lg:mt-44">
+      <div className="mt-24 lg:mt-24">
         <p className="font-display text-base text-slate-900">
           Trusted by these six companies so far
         </p>
