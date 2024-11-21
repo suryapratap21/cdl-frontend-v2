@@ -27,7 +27,7 @@ const features = [
         having access to the right opportunities. [Your Website Name] boasts
         connections with some of the most reputable and expansive freight
         companies across the nation. From coast to coast, our network ensures
-        that wherever your skills and preferences lie, there$apos;s likely a job
+        that wherever your skills and preferences lie, there&apos;s likely a job
         waiting for you
       </div>
     ),
