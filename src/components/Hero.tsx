@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { MapPin, Search } from 'lucide-react'
+import { ArrowUp, MapPin, Search } from 'lucide-react'
 
 import jobLocations from '@/config/jobLocations.json'
 import { Button } from '@/components/Button'
@@ -35,7 +35,8 @@ export function Hero() {
             is waiting for you.
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
-            Find Jobs, Employment & Career Opportunities.
+            Start Your Journey Today - Find Jobs, Employment & Career
+            Opportunities.
           </p>
           <div className="mx-auto mt-10 flex max-w-3xl flex-col justify-between gap-x-6 rounded-md bg-white p-4 shadow-md md:flex-row">
             <div className="flex grow items-center gap-x-2">
@@ -64,7 +65,7 @@ export function Hero() {
               /> */}
             </div>
             <Button className="mt-4 px-8 md:mt-0" color="blue" href="/register">
-              Find Jobs
+              Search Jobs
             </Button>
           </div>
         </div>
@@ -87,14 +88,17 @@ export function Hero() {
             ></div>
 
             <div className="absolute -start-10 top-10 z-20">
-              <div className="border-primary/20 dark:bg-default-50 inline-block rounded-xl border-4 bg-white p-4 drop-shadow-md">
-                <h2 className="text-default-950 text-2xl font-medium">
-                  $6,726&nbsp;
-                  <span className="text-primary text-base font-medium">
-                    +12.5%
+              <div className="inline-block rounded-xl border-4 border-blue-600/40 bg-white p-4 drop-shadow-md">
+                <div className="flex items-end">
+                  <h2 className="text-default-950 text-2xl font-medium">
+                    132&nbsp;
+                  </h2>
+                  <span className="text-primary flex items-center text-sm font-medium text-emerald-600">
+                    <ArrowUp size={14} />
+                    12.5%
                   </span>
-                </h2>
-                <p className="mt-1 text-base">Total Revenue</p>
+                </div>
+                <p className="mt-1 text-base">Jobs Filled</p>
               </div>
             </div>
           </div>
@@ -129,7 +133,7 @@ export function Hero() {
       </div>
       <div className="mt-24 lg:mt-24">
         <p className="font-display text-base text-slate-900">
-          Trusted by these six companies so far
+          Trusted by these companies so far
         </p>
         <ul
           role="list"

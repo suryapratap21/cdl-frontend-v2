@@ -7,35 +7,69 @@ import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import backgroundImage from '@/images/background-features.jpg'
-import screenshotExpenses from '@/images/screenshots/expenses.png'
-import screenshotPayroll from '@/images/screenshots/payroll.png'
-import screenshotReporting from '@/images/screenshots/reporting.png'
-import screenshotVatReturns from '@/images/screenshots/vat-returns.png'
+// import screenshotExpenses from '@/images/screenshots/expenses.png'
+// import screenshotPayroll from '@/images/screenshots/payroll.png'
+// import screenshotReporting from '@/images/screenshots/reporting.png'
+// import screenshotVatReturns from '@/images/screenshots/vat-returns.png'
+import network from '@/images/why-cdl/vast-networkjpeg.jpeg'
+import ease from '@/images/why-cdl/ease-of-use.jpeg'
+import career from '@/images/why-cdl/career-growth.jpeg'
+import security from '@/images/why-cdl/security.jpeg'
 
 const features = [
   {
-    title: 'Payroll',
-    description:
-      "Keep track of everyone's salaries and whether or not they've been paid. Direct deposit not supported.",
-    image: screenshotPayroll,
+    title: 'Vast Network',
+    description: 'Connects with Leading Freight Companies Nationwide.',
+    image: network,
+    children: (
+      <div>
+        We understand that the backbone of any successful career in trucking is
+        having access to the right opportunities. [Your Website Name] boasts
+        connections with some of the most reputable and expansive freight
+        companies across the nation. From coast to coast, our network ensures
+        that wherever your skills and preferences lie, there$apos;s likely a job
+        waiting for you
+      </div>
+    ),
   },
   {
-    title: 'Claim expenses',
-    description:
-      "All of your receipts organized into one place, as long as you don't mind typing in the data by hand.",
-    image: screenshotExpenses,
+    title: 'Ease of Use',
+    description: 'User-friendly Interface Designed for Drivers.',
+    image: ease,
+    children: (
+      <div>
+        Navigating the job market should be as straightforward as driving a
+        truck. Our website is designed with your needs in mind. With intuitive
+        navigation, quick search functionalities, and an application process
+        that takes minutes, we make finding and applying for jobs as seamless as
+        possible
+      </div>
+    ),
   },
   {
-    title: 'VAT handling',
-    description:
-      "We only sell our software to companies who don't deal with VAT at all, so technically we do all the VAT stuff they need.",
-    image: screenshotVatReturns,
+    title: 'Career Growth',
+    description: 'Offers Tools and Resources for Career Advancement.',
+    image: career,
+    children: (
+      <div>
+        At CDLJobsGuru, we believe in not just placing drivers in jobs, but in
+        helping them build careers. We provide a suite of resources tailored for
+        your professional growth in the trucking industry
+      </div>
+    ),
   },
   {
-    title: 'Reporting',
-    description:
-      'Easily export your data into an Excel spreadsheet where you can do whatever the hell you want with it.',
-    image: screenshotReporting,
+    title: 'Security',
+    description: 'Assurance of Data Privacy and Secure Job Applications.',
+    image: security,
+    children: (
+      <div>
+        In an age where data security is paramount, we ensure that your personal
+        and professional information is handled with the utmost confidentiality.
+        Our platform uses state-of-the-art security protocols to keep your data
+        safe
+      </div>
+    ),
   },
 ]
 
@@ -76,11 +110,11 @@ export function PrimaryFeatures() {
       <Container className="relative">
         <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
           <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
-            Everything you need to run your books.
+            Why CDLJobsGuru.com
           </h2>
           <p className="mt-6 text-lg tracking-tight text-blue-100">
-            Well everything you need if you aren’t that picky about minor
-            details like tax compliance.
+            Unlock Endless Opportunities and Drive Your Career Forward with
+            CDLJobsGuru.
           </p>
         </div>
         <TabGroup
@@ -90,7 +124,7 @@ export function PrimaryFeatures() {
           {({ selectedIndex }) => (
             <>
               <div className="-mx-4 flex overflow-x-auto pb-4 sm:mx-0 sm:overflow-visible sm:pb-0 lg:col-span-5">
-                <TabList className="relative z-10 flex gap-x-4 whitespace-nowrap px-4 sm:mx-auto sm:px-0 lg:mx-0 lg:block lg:gap-x-0 lg:gap-y-1 lg:whitespace-normal">
+                <TabList className="relative z-10 flex w-full gap-x-4 whitespace-nowrap px-4 sm:mx-auto sm:px-0 lg:mx-0 lg:block lg:gap-x-0 lg:gap-y-1 lg:whitespace-normal">
                   {features.map((feature, featureIndex) => (
                     <div
                       key={feature.title}
@@ -137,14 +171,21 @@ export function PrimaryFeatures() {
                         {feature.description}
                       </p>
                     </div>
-                    <div className="mt-10 w-[45rem] overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-blue-900/20 sm:w-auto lg:mt-0 lg:w-[67.8125rem]">
+                    <div className="relative mt-10 w-[45rem] overflow-hidden rounded-xl bg-slate-50 shadow-xl shadow-blue-900/20 sm:w-auto lg:mt-0 lg:w-[67.8125rem]">
                       <Image
-                        className="w-full"
+                        className="relative z-0 w-full blur-[2px]"
                         src={feature.image}
                         alt=""
                         priority
                         sizes="(min-width: 1024px) 67.8125rem, (min-width: 640px) 100vw, 45rem"
                       />
+                      {/* a dark overlay */}
+                      <div className="absolute top-0 z-10 h-full w-full bg-slate-900/[.6]" />
+                      <div className="absolute inset-x-4 inset-y-4 z-0 z-20 text-white md:inset-x-12 md:inset-y-1/4 lg:inset-x-20 2xl:inset-x-1/3">
+                        <div className="max-w-72 rounded-lg p-4 text-lg font-medium drop-shadow-lg backdrop-blur md:max-w-[24rem] lg:max-w-[32rem] lg:p-8 xl:max-w-[40rem]">
+                          {feature.children}
+                        </div>
+                      </div>
                     </div>
                   </TabPanel>
                 ))}
