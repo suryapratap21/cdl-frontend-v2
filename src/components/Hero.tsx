@@ -1,5 +1,7 @@
 import Image from 'next/image'
+import { MapPin, Search } from 'lucide-react'
 
+import jobLocations from '@/config/jobLocations.json'
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 // import bannerPerson from '@/images/banner/bg.png'
@@ -10,7 +12,7 @@ import logoStatamic from '@/images/logos/statamic.svg'
 import logoStaticKit from '@/images/logos/statickit.svg'
 import logoTransistor from '@/images/logos/transistor.svg'
 import logoTuple from '@/images/logos/tuple.svg'
-import { MapPin, Search } from 'lucide-react'
+import ComboBox from './pages/home/TransparentComboBox'
 
 export function Hero() {
   return (
@@ -35,7 +37,7 @@ export function Hero() {
           <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
             Find Jobs, Employment & Career Opportunities.
           </p>
-          <div className="mx-auto mt-10 flex h-24 max-w-3xl justify-between gap-x-6 rounded-md bg-white p-4 shadow-md">
+          <div className="mx-auto mt-10 flex max-w-3xl flex-col justify-between gap-x-6 rounded-md bg-white p-4 shadow-md md:flex-row">
             <div className="flex grow items-center gap-x-2">
               <Search size={28} />
               <input
@@ -46,13 +48,22 @@ export function Hero() {
             </div>
             <div className="flex grow items-center gap-x-2">
               <MapPin size={28} />
-              <input
-                className="w-full border-0 focus:border-0 focus:ring-0 active:border-0"
+              <ComboBox
+                options={jobLocations}
+                inputOptions={{
+                  placeholder: 'City or Zip Code',
+                  className:
+                    'h-16 w-full border-0 focus:border-0 focus:ring-0 active:border-0',
+                  'aria-label': 'City or Zip Code',
+                }}
+              />
+              {/* <input
+                className="h-16 w-full border-0 focus:border-0 focus:ring-0 active:border-0"
                 type="text"
                 placeholder="City or Zip Code"
-              />
+              /> */}
             </div>
-            <Button className="px-8" color="blue" href="/register">
+            <Button className="mt-4 px-8 md:mt-0" color="blue" href="/register">
               Find Jobs
             </Button>
           </div>

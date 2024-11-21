@@ -3,8 +3,6 @@ import { Inter, Lexend } from 'next/font/google'
 import clsx from 'clsx'
 
 import '@/styles/tailwind.css'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
 
 export const metadata: Metadata = {
   title: {
@@ -41,11 +39,7 @@ export default function RootLayout({
         lexend.variable,
       )}
     >
-      <body className="">
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </body>
+      <body className="">{children}</body>
     </html>
   )
 }

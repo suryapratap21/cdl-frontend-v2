@@ -170,10 +170,21 @@ function FilterBar() {
 }
 
 // Main Component
-export default async function Component() {
-  const response = await fetch(
-    'https://api.cdljobsguru.com/api/job?viewSize=100',
-  )
+export default async function Component({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  console.log('params: ', searchParams)
+  let url = 'https://api.cdljobsguru.com/api/job?viewSize=100'
+  if (searchParams) {
+    for (const [key, value] of Object.entries(searchParams)) {
+      if (value) {
+        url += `&${key}=${value}`
+      }
+    }
+  }
+  const response = await fetch(url)
   const data = await response.json()
   return (
     <div className="mx-auto max-w-7xl space-y-6 p-4">

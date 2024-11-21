@@ -78,9 +78,19 @@ function MobileNavigation() {
         <MobileNavLink href="/about">About</MobileNavLink>
         <MobileNavLink href="/contact">Contact</MobileNavLink>
         <hr className="m-2 border-slate-300/40" />
-        <MobileNavLink href="/login">Login</MobileNavLink>
-        <MobileNavLink href="/register">Company Signup</MobileNavLink>
-        <MobileNavLink href="/register">Driver Signup</MobileNavLink>
+        <Link
+          className="block w-full p-2"
+          href="https://admin.cdljobsguru.com/"
+          target="_blank"
+        >
+          Login
+        </Link>
+        <span className="block md:hidden">
+          <MobileNavLink href="/register">Company Signup</MobileNavLink>
+        </span>
+        <span className="block md:hidden">
+          <MobileNavLink href="/register">Driver Signup</MobileNavLink>
+        </span>
       </PopoverPanel>
     </Popover>
   )
@@ -88,8 +98,8 @@ function MobileNavigation() {
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 mx-auto max-w-8xl border-b border-solid border-b-neutral-200 bg-white p-4 lg:px-8 lg:py-6">
-      <nav className="relative z-50 flex justify-between">
+    <header className="sticky top-0 z-50 border-b border-solid border-b-neutral-200 bg-white p-4 shadow lg:px-8 lg:py-6">
+      <nav className="relative z-50 mx-auto flex max-w-8xl justify-between">
         <div className="flex items-center xl:gap-x-12">
           <Link href="#" aria-label="Home">
             <Logo className="h-10 w-auto" />
@@ -105,12 +115,14 @@ export function Header() {
         </div>
         <div className="flex items-center gap-x-5 xl:gap-x-8">
           <div className="hidden xl:block">
-            <NavLink href="/login">Login</NavLink>
+            <NavLink target="_blank" href="https://admin.cdljobsguru.com/">
+              Login
+            </NavLink>
           </div>
-          <Button href="/register" color="blue">
+          <Button className="hidden md:block" href="/register" color="blue">
             <span>Company Signup</span>
           </Button>
-          <Button href="/register" color="blue">
+          <Button className="hidden md:block" href="/register" color="blue">
             <span>Driver Signup</span>
           </Button>
           <div className="-mr-1 xl:hidden">
