@@ -216,3 +216,5 @@ export default async function Component({
     </div>
   )
 }
+
+export const runtime = 'edge'
