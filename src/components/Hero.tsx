@@ -64,7 +64,7 @@ export function Hero() {
                 placeholder="City or Zip Code"
               /> */}
             </div>
-            <Button className="mt-4 px-8 md:mt-0" color="blue" href="/register">
+            <Button className="mt-4 px-8 md:mt-0" color="blue" href="/jobs">
               Search Jobs
             </Button>
           </div>

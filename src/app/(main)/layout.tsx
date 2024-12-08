@@ -1,5 +1,5 @@
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
+// import { Header } from '@/components/Header'
+// import { Footer } from '@/components/Footer'
 
 export default function BasicLayout({
   children,
@@ -8,9 +8,7 @@ export default function BasicLayout({
 }) {
   return (
     <>
-      <Header />
       <main>{children}</main>
-      <Footer />
     </>
   )
 }

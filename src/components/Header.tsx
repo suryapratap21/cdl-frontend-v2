@@ -86,10 +86,10 @@ function MobileNavigation() {
           Login
         </Link>
         <span className="block md:hidden">
-          <MobileNavLink href="/register">Company Signup</MobileNavLink>
+          <MobileNavLink href="/sign-up/company">Company Signup</MobileNavLink>
         </span>
         <span className="block md:hidden">
-          <MobileNavLink href="/register">Driver Signup</MobileNavLink>
+          <MobileNavLink href="/sign-up/driver">Driver Signup</MobileNavLink>
         </span>
       </PopoverPanel>
     </Popover>
@@ -101,7 +101,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-solid border-b-neutral-200 bg-white p-4 shadow lg:px-8 lg:py-6">
       <nav className="relative z-50 mx-auto flex max-w-8xl justify-between">
         <div className="flex items-center xl:gap-x-12">
-          <Link href="#" aria-label="Home">
+          <Link href="/" aria-label="Home">
             <Logo className="h-10 w-auto" />
           </Link>
           <div className="hidden xl:flex xl:gap-x-6">
@@ -119,10 +119,18 @@ export function Header() {
               Login
             </NavLink>
           </div>
-          <Button className="hidden md:block" href="/register" color="blue">
+          <Button
+            className="hidden md:block"
+            href="/sign-up/company"
+            color="blue"
+          >
             <span>Company Signup</span>
           </Button>
-          <Button className="hidden md:block" href="/register" color="blue">
+          <Button
+            className="hidden md:block"
+            href="/sign-up/driver"
+            color="blue"
+          >
             <span>Driver Signup</span>
           </Button>
           <div className="-mr-1 xl:hidden">
