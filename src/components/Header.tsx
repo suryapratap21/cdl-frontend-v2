@@ -98,8 +98,8 @@ function MobileNavigation() {
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-solid border-b-neutral-200 bg-white p-4 shadow lg:px-8 lg:py-6">
-      <nav className="relative z-50 mx-auto flex max-w-8xl justify-between">
+    <header className="sticky top-0 z-40 border-b border-solid border-b-neutral-200 bg-white p-4 shadow lg:px-8 lg:py-6">
+      <nav className="relative z-40 mx-auto flex max-w-8xl justify-between">
         <div className="flex items-center xl:gap-x-12">
           <Link href="/" aria-label="Home">
             <Logo className="h-10 w-auto" />

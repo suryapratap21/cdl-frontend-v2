@@ -12,3 +12,12 @@ export const getDotDetails = async (values: any) => {
     console.error(error)
   }
 }
+
+export const createCompany = async (values: any) => {
+  try {
+    const response = await axios.post(`${hostname()}/company/create`, values)
+    return response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
