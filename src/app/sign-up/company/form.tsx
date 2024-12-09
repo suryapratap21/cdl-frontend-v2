@@ -13,46 +13,69 @@ export default function CompanySignUpForm() {
   const [isOpen, setIsOpen] = useState(false)
   const [data, setData] = useState({
     dot: '',
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
   })
   const [dotDetails, setDotDetails] = useState<any>({
     isFetched: false,
   })
   const [croppedImage, setCroppedImage] = useState<Blob | null>(null)
+  const [originalExtension, setOriginalExtension] = useState<String | null>(
+    null,
+  )
 
-  const handleImageCropped = (croppedImage: Blob | null) => {
+  const handleImageCropped = (
+    croppedImage: Blob | null,
+    originalFileExtension?: any,
+  ) => {
     setCroppedImage(croppedImage)
+    setOriginalExtension(originalFileExtension)
   }
   const onSubmit = async () => {
     setLoading(true)
-    if (dotDetails.isFetched && dotDetails?.usdot) {
-      if (!croppedImage) {
-        toast.error('Logo is required!')
-      } else {
-        const formData = new FormData()
-        formData.append('dot', data.dot)
-        formData.append('name', data.name)
-        formData.append('email', data.email)
-        formData.append('logo', croppedImage)
-        const response = await createCompany(formData)
-        console.log(response)
-        if (response?.success) {
-          toast.success('Company created successfully!')
-          setData({ dot: '', name: '', email: '' })
-          setDotDetails({ isFetched: false })
+    try {
+      if (dotDetails.isFetched && dotDetails?.usdot) {
+        if (!croppedImage) {
+          toast.error('Logo is required!')
         } else {
-          toast.error('Something went wrong!')
+          const formData = new FormData()
+          formData.append('dot', data.dot)
+          formData.append('firstName', data.firstName)
+          formData.append('lastName', data.lastName)
+          formData.append('email', data.email)
+          formData.append(
+            'logo',
+            croppedImage,
+            `${data.dot}-logo.${originalExtension}`,
+          )
+          const response = await createCompany(formData)
+          console.log(response)
+          if (response?.success) {
+            toast.success('Company created successfully!')
+            setData({ dot: '', firstName: '', lastName: '', email: '' })
+            setDotDetails({ isFetched: false })
+          } else {
+            toast.error('Something went wrong!')
+          }
         }
+      } else {
+        const dotDetails = await getDotDetails(data)
+        setDotDetails(dotDetails)
+        setIsOpen(true)
       }
-    } else {
-      console.log('submitting form')
-      const dotDetails = await getDotDetails(data)
-      setDotDetails(dotDetails)
-      setIsOpen(true)
+    } catch (error: any) {
+      console.error(error)
+      toast.error(
+        typeof error.message === 'string'
+          ? error.message
+          : 'Something went wrong!',
+      )
     }
     setLoading(false)
   }
+
+  console.log(isOpen)
 
   //   react-image-crop code
   return (
@@ -111,16 +134,6 @@ export default function CompanySignUpForm() {
         onChange={(e) => setData({ ...data, dot: e.target.value })}
       />
       <TextField
-        label="Name"
-        name="name"
-        type="text"
-        autoComplete="given-name"
-        required
-        value={data.name}
-        onChange={(e) => setData({ ...data, name: e.target.value })}
-      />
-      <TextField
-        className="col-span-full"
         label="Email address"
         name="email"
         type="email"
@@ -128,6 +141,24 @@ export default function CompanySignUpForm() {
         required
         value={data.email}
         onChange={(e) => setData({ ...data, email: e.target.value })}
+      />
+      <TextField
+        label="First Name"
+        name="firstName"
+        type="text"
+        autoComplete="first-name"
+        required
+        value={data.firstName}
+        onChange={(e) => setData({ ...data, firstName: e.target.value })}
+      />
+      <TextField
+        label="Last Name"
+        name="lastName"
+        type="text"
+        autoComplete="last-name"
+        required
+        value={data.lastName}
+        onChange={(e) => setData({ ...data, lastName: e.target.value })}
       />
       {dotDetails.isFetched && dotDetails?.usdot && (
         <>

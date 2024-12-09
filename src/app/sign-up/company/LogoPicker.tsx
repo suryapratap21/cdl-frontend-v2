@@ -25,7 +25,10 @@ import { Button } from '@/components/Button'
 
 interface ImageCropperProps {
   aspectRatio: number // The desired aspect ratio (e.g., 16/9, 4/3)
-  onCropComplete: (croppedImage: Blob | null) => void // Callback to receive the cropped image
+  onCropComplete: (
+    croppedImage: Blob | null,
+    originalFileExtension?: string | null,
+  ) => void // Callback to receive the cropped image
 }
 
 const CompanyLogoPicker: React.FC<ImageCropperProps> = ({
@@ -38,6 +41,9 @@ const CompanyLogoPicker: React.FC<ImageCropperProps> = ({
   const [completedCrop, setCompletedCrop] = useState<PixelCrop>()
   const [croppedImageURL, setCroppedImageURL] = useState<string | null>(null) // State to hold the cropped image URL
   const imgRef = useRef<HTMLImageElement>(null)
+  const [originalFileExtension, setOriginalFileExtension] = useState<
+    string | null
+  >(null) // State to hold original file extension
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0]
@@ -48,6 +54,10 @@ const CompanyLogoPicker: React.FC<ImageCropperProps> = ({
         setIsOpen(true)
       })
       reader.readAsDataURL(file)
+
+      // Capture original file extension
+      const extension = file.name.split('.').pop()?.toLowerCase() || ''
+      setOriginalFileExtension(extension)
     } else {
       // Handle invalid file type (optional)
       console.error('Invalid file type. Please select an image.')
@@ -84,20 +94,23 @@ const CompanyLogoPicker: React.FC<ImageCropperProps> = ({
   const handleCropComplete = useCallback(
     async (crop: PixelCrop) => {
       if (imgRef.current && crop.width && crop.height) {
+        // Determine the file extension to use
+        const fileExtension = originalFileExtension || 'jpeg' // Use original extension if available, otherwise default to 'jpeg'
+
         const croppedImageBlob = await getCroppedImg(
           imgRef.current,
           crop,
-          'croppedImage.jpeg', // Set the desired file name and extension
+          `cropped_image.${fileExtension}`, // Use the determined extension here
         )
 
         // Create a temporary URL for the cropped image Blob
         const newCroppedImageURL = URL.createObjectURL(croppedImageBlob)
         setCroppedImageURL(newCroppedImageURL)
         setIsOpen(false)
-        onCropComplete(croppedImageBlob)
+        onCropComplete(croppedImageBlob, originalFileExtension)
       }
     },
-    [imgRef, onCropComplete],
+    [imgRef, onCropComplete, originalFileExtension], // Add originalFileExtension to the dependency array
   )
 
   // Clean up the temporary URL when the component unmounts or when a new image is selected
@@ -115,6 +128,7 @@ const CompanyLogoPicker: React.FC<ImageCropperProps> = ({
     setCrop(undefined)
     setCompletedCrop(undefined)
     onCropComplete(null) // Reset the cropped image
+    setOriginalFileExtension(null) // Reset the original file extension
   }
 
   return (
